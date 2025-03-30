@@ -53,6 +53,7 @@ proxies:
     port: 443
     type: vmess
     uuid: a8f8fe67-747f-4f14-aff8-e3d2826f1379
+    alterId: 0
     cipher: auto
     tls: true
     skip-cert-verify: true
@@ -68,6 +69,7 @@ proxies:
     port: 443
     type: vmess
     uuid: aac52b22-0b08-455e-95c0-e7db06aafdba
+    alterId: 0
     cipher: auto
     tls: true
     skip-cert-verify: true
