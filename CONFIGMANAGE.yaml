@@ -1,0 +1,169 @@
+# Configby YT JAVA ROAM-------------
+
+#--------------------------------------
+port: 7890
+socks-port: 7891
+# redir-port: 7892
+allow-lan: true
+# 仅适用于设置 allow-lan 为 true 时
+# "*": 绑定所有 IP 地址
+#192.168.122.11: 绑定单个 IPv4 地址
+# "[aaaa::a8aa:ff:fe09:57d8]": 绑定单个 IPv6 地址
+# bind-address: "*"
+
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:9090
+experimental:
+  ignore-resolve-fail: true 
+hosts:
+  'mtalk.google.com': 108.177.125.188
+#   '*.clash.dev': 127.0.0.1
+#   'alpha.clash.dev': '::1'
+
+#🔴_____________________________________proxies______________________________________🔴
+#🔴
+proxies: 
+#(1)
+- name: "Trojan"
+  type: trojan
+  server: sg-3.test3.net
+  port: 443
+  password: 25b1d6d0-aaad-11ed-a940-1239d0255272
+  udp: true
+  sni: bug.com
+  alpn:
+     - h2
+     - http/1.1
+  skip-cert-verify: true
+#(2)
+- name: "V2ray"
+  type: vmess
+  server: pl3.v2rayserv.com
+  port: 443
+  uuid: f5b41aed-cd41-416b-a6c0-dd250956ebcb
+  alterId: 0
+  cipher: auto
+  udp: true
+  skip-cert-verify: true
+  tls: true
+  servername: bug.com
+  network: ws
+  ws-path: /vmess
+#3
+- name: "Shadowsock"
+  type: ss
+  server: sg1-sock.tcpvpn.com
+  port: 443
+  cipher: aes-256-gcm
+  password: shadowsocksip@&!*@x1^
+  plugin: obfs
+  plugin-opts:                 
+    mode: tls
+    host: bug.com
+
+
+#🔴
+#🔴_____________________________________proxies______________________________________🔴
+#
+#🟡_________________________________PROXY-GROUP__________________________________🟡
+proxy-groups:
+# Global kita gunakan untuk koneksi UMUM
+- name: "Global✅"
+  type: select
+  proxies:
+    - "DIRECT"
+    -  
+    -  
+    -  
+#⬜⬜
+#Koneksi Sosmed
+- name: "SOSMED"
+  type: select #PILIIH SALAH SATU : SELECT,LOAD-BALANCE,FALLBACK,URL-TEST
+  proxies:
+    - "DIRECT"
+    -  
+    -  
+    -  
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+#⬜⬜
+#koneksi nonton video yt dll,
+- name: "STREAMING"
+  type: select
+  proxies:
+    - "DIRECT"
+    -  
+    -  
+    -  
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+ #⬜⬜
+#🟡_________________________________PROCY-GROUP__________________________________🟡
+# Clash for Windows
+cfw-bypass:
+  - qq.com
+  - music.163.com
+  - '*.music.126.net'
+  - localhost
+  - 127.*
+  - 10.*
+  - 172.16.*
+  - 172.17.*
+  - 172.18.*
+  - 172.19.*
+  - 172.20.*
+  - 172.21.*
+  - 172.22.*
+  - 172.23.*
+  - 172.24.*
+  - 172.25.*
+  - 172.26.*
+  - 172.27.*
+  - 172.28.*
+  - 172.29.*
+  - 172.30.*
+  - 172.31.*
+  - 192.168.*
+  - <local>
+cfw-latency-timeout: 5000
+
+rules:
+# >BISA DI ISI SUBDOMAIN,IP-CIDR ATAU PORT GAME 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Local Area Network
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,127.0.0.0/8,DIRECT
+- IP-CIDR,100.64.0.0/10,DIRECT
+
+# DNSPod Public DNS+
+- IP-CIDR,119.28.28.28/32,DIRECT,no-resolve
+
+# GeoIP China
+- GEOIP,CN,DIRECT
+#--------------------------------------
+
+- MATCH,Global✅
+
+#--------------------------------------
+
+
